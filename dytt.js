@@ -7,6 +7,7 @@
 // @match        *://www.ygdy8.com/*
 // @match        *://dy.dytt8.net/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/hhnice510/TamperMonkey/main/dytt.js
 // @license MIT
 // ==/UserScript==
 
