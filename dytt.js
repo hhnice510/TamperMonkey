@@ -11,6 +11,7 @@
 // @require      https://gitee.com/hhnice/TamperMonkey/raw/main/jquery.base64.js
 // @updateURL    https://raw.githubusercontent.com/hhnice510/TamperMonkey/main/dytt.js
 // @updateURL    https://gitee.com/hhnice/TamperMonkey/raw/main/dytt.js
+// @license MIT
 // ==/UserScript==
 
 
