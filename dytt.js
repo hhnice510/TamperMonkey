@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         电影天堂复制链接
+// @name         电影天堂复制磁链
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @description  点击复制电影、电视剧链接
@@ -7,13 +7,12 @@
 // @match        *://www.ygdy8.com/*
 // @match        *://dy.dytt8.net/*
 // @grant        none
-// @require      https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js
-// @require      https://gitee.com/hhnice/TamperMonkey/raw/main/jquery.base64.js
+// @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.bootcdn.net/ajax/libs/Base64/1.1.0/base64.js
 // @updateURL    https://raw.githubusercontent.com/hhnice510/TamperMonkey/main/dytt.js
 // @updateURL    https://gitee.com/hhnice/TamperMonkey/raw/main/dytt.js
 // @license MIT
 // ==/UserScript==
-
 
 $(function(){
     console.log("引入成功")
@@ -22,7 +21,7 @@ $(function(){
 
 //var num = $("#Zoom").find("table").length
 var num = $("#Zoom span table").length;
-console.log(num);
+console.log("一共" + num + "集");
 
 //判断当前页面为电影还是电视剧
 
@@ -65,7 +64,9 @@ if(isTv()){
         //console.log(ftp)
         let url = 'AA' + ftp + 'ZZ';
         //base64编码
-        let urlBase64 = $.base64.encode(url);
+        //官方cdn中 Base64.js编码方式为btoa(srt)
+        //jquery.base64.js中，编码方式为$.base64.encode(srt)
+        let urlBase64 = btoa(url);
         let thunder = 'thunder://' + urlBase64;
         //console.log(thunder);
         //将thunder输出至数组存储
@@ -87,4 +88,11 @@ if(isTv()){
     }
 
 }
+
+
+
+
+
+
+
 
