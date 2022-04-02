@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         电影天堂复制磁链
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  点击复制电影、电视剧链接
+// @version      0.3
+// @description  点击复制电影、电视剧链接;添加一键复制全集电视剧链接
 // @author       花花nice
 // @match        *://www.ygdy8.com/*
 // @match        *://dy.dytt8.net/*
+// @match        https://dy.dytt8.net/
+// @match        https://www.ygdy8.com/
 // @grant        none
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require      https://cdn.bootcdn.net/ajax/libs/Base64/1.1.0/base64.js
@@ -53,7 +55,10 @@ if(isMovie()){
 }
 
 
+
+
 if(isTv()){
+    var allLinks = [];
     for(var i = 4; i < num + 4; i++){
         //获取标签文本  -srt
         let $i = i;
@@ -70,7 +75,7 @@ if(isTv()){
         let thunder = 'thunder://' + urlBase64;
         //console.log(thunder);
         //将thunder输出至数组存储
-        //arr.push(arr[thunder]);
+        allLinks.push(thunder);
 
 
         let id = $i - 3;
@@ -86,6 +91,34 @@ if(isTv()){
         }
 
     }
+    //console.log(allLinks)
+
+
+    let $element1 = $('#Zoom > span > p:nth-child(3) > strong > font');
+    let btn1 = document.createElement('button');
+    btn1.innerText = '一键复制';
+    $element1.after(btn1);
+
+    btn1.addEventListener('click', copyAllLinks);
+
+    //将数组链接换行输出存储
+    var all ='';
+    for(var x = 0; x < num; x++){
+
+        all +=allLinks[x] + '\r';
+
+    }
+
+    function copyAllLinks(){
+
+        //let all = allLinks[0]+ '\r' +allLinks[1]
+
+
+        let clipboard1  = navigator.clipboard.writeText(all)
+        console.log("一键复制成功")
+
+    }
+
 
 }
 
